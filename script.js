@@ -1,4 +1,4 @@
-const malla = [
+const malla = [const malla = [
   {
     semestre: 1,
     cursos: [
@@ -173,4 +173,82 @@ function actualizarMalla() {
 }
 
 renderMalla();
+];
 
+const estadoCursos = JSON.parse(localStorage.getItem("progresoMalla")) || {};
+
+function renderMalla() {
+  const contenedor = document.getElementById("semestres");
+  malla.forEach((semestre) => {
+    const div = document.createElement("div");
+    div.className = "semestre";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = `Semestre ${semestre.semestre}`;
+    div.appendChild(titulo);
+
+    semestre.cursos.forEach((curso) => {
+      const label = document.createElement("label");
+      label.className = "curso";
+      if (estadoCursos[curso.codigo]) label.classList.add("aprobado");
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.id = curso.codigo;
+      checkbox.checked = !!estadoCursos[curso.codigo];
+      checkbox.disabled = curso.requisitos.length > 0;
+
+      checkbox.addEventListener("change", () => {
+        estadoCursos[curso.codigo] = checkbox.checked;
+        guardarProgreso();
+        actualizarMalla();
+      });
+
+      label.appendChild(checkbox);
+      label.appendChild(document.createTextNode(`${curso.codigo} - ${curso.nombre}`));
+      div.appendChild(label);
+    });
+
+    contenedor.appendChild(div);
+  });
+
+  const botonGuardar = document.createElement("button");
+  botonGuardar.textContent = "Guardar progreso";
+  botonGuardar.style.marginTop = "20px";
+  botonGuardar.style.padding = "10px 15px";
+  botonGuardar.style.fontSize = "16px";
+  botonGuardar.style.backgroundColor = "#00796b";
+  botonGuardar.style.color = "white";
+  botonGuardar.style.border = "none";
+  botonGuardar.style.borderRadius = "6px";
+  botonGuardar.style.cursor = "pointer";
+  botonGuardar.addEventListener("click", guardarProgreso);
+
+  contenedor.appendChild(botonGuardar);
+}
+
+function actualizarMalla() {
+  malla.forEach((semestre) => {
+    semestre.cursos.forEach((curso) => {
+      const checkbox = document.getElementById(curso.codigo);
+      const label = checkbox.parentElement;
+      const aprobado = !!estadoCursos[curso.codigo];
+      const requisitosCumplidos = curso.requisitos.every((cod) => estadoCursos[cod]);
+
+      checkbox.checked = aprobado;
+      label.classList.toggle("aprobado", aprobado);
+
+      if (!aprobado) {
+        checkbox.disabled = !requisitosCumplidos;
+      }
+    });
+  });
+}
+
+function guardarProgreso() {
+  localStorage.setItem("progresoMalla", JSON.stringify(estadoCursos));
+  alert("¡Progreso guardado!");
+}
+
+renderMalla();
+actualizarMalla();

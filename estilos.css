@@ -1,45 +1,69 @@
+/* Estilo general */
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
   margin: 0;
   padding: 0;
 }
 
+/* Contenedor principal */
 .container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 30px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border: 2px solid #0097a7;
 }
 
-.semestre {
-  margin-bottom: 20px;
-  padding: 10px;
-  border-left: 4px solid #0077cc;
-  background-color: #eef6ff;
-  border-radius: 4px;
-}
-
+/* Título */
 h1 {
   text-align: center;
-  color: #333;
+  color: #00796b;
+  font-size: 32px;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 2px #ccc;
 }
 
+/* Sección de cada semestre */
+.semestre {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-left: 6px solid #00796b;
+  background-color: #e0f2f1;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.semestre:hover {
+  background-color: #b2dfdb;
+}
+
+/* Título de semestre */
 h2 {
-  color: #0077cc;
-  margin-bottom: 10px;
+  color: #004d40;
+  margin-bottom: 15px;
+  font-size: 22px;
 }
 
+/* Estilo de cada curso */
 .curso {
   display: block;
-  margin-bottom: 8px;
-  padding: 4px;
-  font-size: 15px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
+.curso:hover {
+  background-color: #ffffff;
+}
+
+/* Casillas */
 .curso input[type="checkbox"] {
-  margin-right: 8px;
+  margin-right: 10px;
+  transform: scale(1.2);
+  accent-color: #009688;
 }
-

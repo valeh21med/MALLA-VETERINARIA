@@ -1,1 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.semestre {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-left: 4px solid #0077cc;
+  background-color: #eef6ff;
+  border-radius: 4px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  color: #0077cc;
+  margin-bottom: 10px;
+}
+
+.curso {
+  display: block;
+  margin-bottom: 8px;
+  padding: 4px;
+  font-size: 15px;
+}
+
+.curso input[type="checkbox"] {
+  margin-right: 8px;
+}
 
